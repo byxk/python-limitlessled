@@ -12,8 +12,8 @@ from limitlessled.group.commands import CommandSet, Command
 class CommandV6(Command):
     """ Represents a single v6 command to be sent to the bridge. """
 
-    PASSWORD_BYTE1 = 0x00
-    PASSWORD_BYTE2 = 0x00
+    PASSWORD_BYTE1 = 0x52
+    PASSWORD_BYTE2 = 0x38
 
     def __init__(self, cmd_1, cmd_2, remote_style, group_number,
                  select=False, select_command=None):
@@ -41,7 +41,7 @@ class CommandV6(Command):
         wb2 = bridge.wb2
         sn = bridge.sn
 
-        preamble = [0x80, 0x00, 0x00, 0x00, 0x11, wb1, wb2, 0x00, sn, 0x00]
+        preamble = [0x83, 0x00, 0x00, 0x00, 0x11, wb1, wb2, 0x00, sn, 0x00]
         cmd = [0x31, self.PASSWORD_BYTE1, self.PASSWORD_BYTE2,
                self._remote_style, self._cmd_1,
                self._cmd_2, self._cmd_2, self._cmd_2, self._cmd_2]
